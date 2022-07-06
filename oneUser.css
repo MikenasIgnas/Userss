@@ -1,0 +1,48 @@
+.post-item {
+  background-color: lightgrey;
+}
+#showPosts {
+  width: 100px;
+  height: 30px;
+}
+#posts-wrapper {
+  display: grid;
+  margin: auto;
+  width: 70%;
+  gap: 10px;
+  grid-template-columns: repeat(5, 1fr);
+  display: none;
+}
+#albums-wrapper {
+  display: grid;
+  margin: auto;
+
+  width: 30%;
+  margin-top: 20px;
+  display: none;
+}
+#showAlbums {
+  width: 100px;
+  height: 30px;
+}
+.postsAlbumContainer {
+  margin-top: 20px;
+}
+#user-info {
+  justify-content: center;
+  display: flex;
+}
+#buttons {
+  margin: auto;
+  justify-content: space-around;
+  display: flex;
+  margin-bottom: 10px;
+}
+.userBox {
+  margin: auto;
+  width: 30%;
+  border: 1px solid black;
+}
+.itemHeader {
+  text-align: center;
+}
