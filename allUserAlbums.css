@@ -2,7 +2,6 @@
   background-color: rgb(186, 187, 233);
   padding-right: 25px;
 }
-
 .headerContainer {
   width: 100%;
   height: 70px;
@@ -14,7 +13,6 @@
 }
 .homePageContainer {
   width: 100%;
-
   background-color: rgb(104, 105, 184);
 }
 .headerItems {
@@ -23,6 +21,7 @@
   height: 100%;
   display: flex;
   align-items: center;
+
   justify-content: space-around;
 }
 .homePage {
@@ -30,6 +29,7 @@
   margin: auto;
   max-width: 1550px;
   padding: 20px;
+
   background-color: rgb(104, 105, 184);
 }
 .homePageInfo {
@@ -44,7 +44,6 @@ a {
 }
 .userAlbumList {
   text-align: left;
-
   margin: auto;
 }
 #mainDiv {

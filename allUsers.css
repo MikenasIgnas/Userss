@@ -8,10 +8,10 @@
   height: 250px;
   background-color: rgb(186, 187, 233);
 }
-
 .itemHeader {
   text-align: center;
   width: 100%;
+
   color: white;
 }
 .itemListElement {
@@ -26,7 +26,6 @@
   flex-wrap: wrap;
   align-content: space-between;
 }
-
 .headerContainer {
   width: 100%;
   height: 70px;
@@ -38,7 +37,6 @@
 }
 .homePageContainer {
   width: 100%;
-
   background-color: rgb(104, 105, 184);
 }
 .headerItems {
@@ -54,9 +52,7 @@
   align-items: center;
   margin: auto;
   max-width: 1550px;
-
   height: 1000px;
-
   width: 100%;
 }
 .homePageInfo {

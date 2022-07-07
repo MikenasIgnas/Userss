@@ -70,13 +70,13 @@
   margin: auto;
   width: 700px;
   height: 100%;
+
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
 .homePage {
   display: flex;
-
   margin: auto;
 
   max-width: 1000px;
