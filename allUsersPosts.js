@@ -72,7 +72,7 @@ fetch("https://jsonplaceholder.typicode.com/todos/1/posts")
           for (let key in Object.keys(authorName)) {
             const userNames = authorName[key].name;
 
-            userName.innerHTML = `<a href="./oneUser.html?user_id=${authorName[key].id}">${userNames}</a>`;
+            userName.innerHTML = `<a class="authorName" href="./oneUser.html?user_id=${authorName[key].id}">${userNames}</a>`;
           }
         }
         createPost(user1Posts, user1Name);

@@ -26,11 +26,10 @@
   justify-content: space-around;
 }
 .homePage {
-  display: flex;
   align-items: center;
   margin: auto;
-
-  max-width: 1000px;
+  padding-top: 70px;
+  max-width: 1500px;
   height: 1000px;
   background-color: rgb(104, 105, 184);
   width: 100%;

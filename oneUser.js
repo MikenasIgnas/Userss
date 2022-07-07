@@ -38,7 +38,7 @@ fetch(`https://jsonplaceholder.typicode.com/posts?user_id=${userId}`)
         fetch("https://jsonplaceholder.typicode.com/users/" + userId)
           .then((res) => res.json())
           .then((user) => {
-            postAuthor.innerHTML = `Author: <a href="./user.html?user_id=${userId}">${user.name}</a>`;
+            postAuthor.innerHTML = `Author: <a href="./oneUser.html?user_id=${userId}">${user.name}</a>`;
           });
       }
     });
@@ -65,6 +65,7 @@ fetch(`https://jsonplaceholder.typicode.com/users?user_id=${userId}`)
     });
   });
 const fieldSet = document.createElement("fieldset");
+fieldSet.classList.add("fieldset");
 const legend = document.createElement("legend");
 legend.textContent = "ALBUMS";
 fetch(`https://jsonplaceholder.typicode.com/albums?user_id=${userId}`)
@@ -74,6 +75,7 @@ fetch(`https://jsonplaceholder.typicode.com/albums?user_id=${userId}`)
     userAlbums.map((album) => {
       if (userId == album.userId) {
         const albumContainer = document.createElement("ul");
+        albumContainer.classList.add("albumContainer");
         const albumListItemms = document.createElement("li");
         albumListItemms.innerHTML =
           album.title +

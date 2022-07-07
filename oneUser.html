@@ -8,32 +8,36 @@
     <link rel="stylesheet" href="oneUser.css" />
   </head>
   <body>
-    <div class="mainContainer">
-      <div class="headerContainer">
-        <div class="header">
-          <div class="headerItems">
-            <a href="./index.html">Home</a>
-            <a href="./allUsers.html">Users</a>
-            <a href="./allUsersPosts.html">Posts</a>
-            <a href="./allUserAlbums.html">Albums</a>
-          </div>
-        </div>
+    
+<div class="mainContainer">
+  <div class="headerContainer">
+    <div class="header">
+      <div class="headerItems">
+        <a href="./index.html">Home</a>
+        <a href="./allUsers.html">Users</a>
+        <a href="./allUsersPosts.html">Posts</a>
+        <a href="./allUserAlbums.html">Albums</a>
       </div>
     </div>
-    
-    <div class="userBox">
-      
-    <div id="user-info"></div>
-    <div id="buttons">
-      <input id="showPosts" type="button" value="Show Posts" onclick="return change(this,'Show Posts','Hide',postsWrapper);"></input>
-      <input id="showAlbums" type="button" value="Show Albums" onclick="return change(this,'Show Albums','Hide',albumsWrapper);"></input>
+  </div>
+  <div class="homePageContainer">
+    <div class="homePage">
+      <div class="homePageInfo">
+        <div class="userBox">
+          <div id="user-info"></div>
+          <div id="buttons">
+            <input id="showPosts" type="button" value="Show Posts" onclick="return change(this,'Show Posts','Hide',postsWrapper);"></input>
+            <input id="showAlbums" type="button" value="Show Albums" onclick="return change(this,'Show Albums','Hide',albumsWrapper);"></input>
+          </div>
+        </div>
+          <div class="postsAlbumContainer">
+            <div id="posts-wrapper"></div>
+            <div id="albums-wrapper"></div>
+      </div>
     </div>
   </div>
-    <div class="postsAlbumContainer">
-      <div id="posts-wrapper"></div>
-    
-      <div id="albums-wrapper"></div>
-    </div>
+</div>
   </body>
   <script src="oneUser.js"></script>
 </html>
+

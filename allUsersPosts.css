@@ -1,5 +1,5 @@
 .userPostElement {
-  background-color: rgb(202, 216, 211);
+  background-color: rgb(186, 187, 233);
 }
 .userAlbumElement {
   background-color: rgb(94, 175, 148);
@@ -28,20 +28,27 @@
   justify-content: space-around;
 }
 .homePage {
-  display: flex;
   align-items: center;
   margin: auto;
 
   max-width: 1000px;
-  height: 1000px;
+
   background-color: rgb(104, 105, 184);
   width: 100%;
 }
 .homePageInfo {
   width: 100%;
-  text-align: center;
-  line-height: 100px;
 }
 a {
   color: rgb(0, 0, 0);
+}
+.authorName {
+  font-size: 20px;
+}
+.userPostElement {
+  margin-bottom: 20px;
+  padding: 20px;
+}
+#mainDiv {
+  padding-top: 10px;
 }

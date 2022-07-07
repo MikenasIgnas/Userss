@@ -1,5 +1,6 @@
 .userAlbumElement {
-  background-color: rgb(94, 175, 148);
+  background-color: rgb(186, 187, 233);
+  padding-right: 25px;
 }
 
 .headerContainer {
@@ -25,20 +26,29 @@
   justify-content: space-around;
 }
 .homePage {
-  display: flex;
   align-items: center;
   margin: auto;
-
-  max-width: 1000px;
-  height: 1000px;
+  max-width: 1550px;
+  padding: 20px;
   background-color: rgb(104, 105, 184);
-  width: 100%;
 }
 .homePageInfo {
   width: 100%;
   text-align: center;
-  line-height: 100px;
 }
 a {
   color: rgb(0, 0, 0);
+}
+.userName {
+  font-size: 20px;
+}
+.userAlbumList {
+  text-align: left;
+
+  margin: auto;
+}
+#mainDiv {
+  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
 }

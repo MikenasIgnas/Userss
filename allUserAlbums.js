@@ -54,13 +54,14 @@ fetch("https://jsonplaceholder.typicode.com/todos/1/albums")
           for (let key in Object.keys(userAlbums)) {
             userAlbumElement.classList.add(`userAlbumElement`);
             const userAlbumList = document.createElement("li");
+            userAlbumList.classList.add("userAlbumList");
             userAlbumList.textContent = userAlbums[key].title;
             userAlbum.append(userAlbumList);
             userAlbum.prepend(userName);
           }
           for (let key in Object.keys(authorName)) {
             const userNames = authorName[key].name;
-            userName.innerHTML = `<a href="./oneUser.html?user_id=${authorName[key].id}">${userNames}</a>`;
+            userName.innerHTML = `<a class="userName" href="./oneUser.html?user_id=${authorName[key].id}">${userNames}</a>`;
           }
           userAlbumElement.append(userAlbum);
           mainDiv.append(userAlbumElement);
