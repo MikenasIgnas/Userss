@@ -1,38 +1,7 @@
-#user-info {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  justify-items: center;
-  gap: 10px;
-}
-.userInfoContainer {
-  margin-bottom: 100px;
-  width: 300px;
-  height: 250px;
-  background-color: rgb(170, 175, 175);
-}
-.listItems {
-}
-.itemHeader {
-  text-align: center;
-  width: 100%;
-  color: white;
-}
-.itemListElement {
-  width: 100%;
-  height: 60%;
-  margin-bottom: 40px;
-}
-.ItemContent {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: space-between;
-}
 .mainContainer {
-  margin: 20px;
+  width: 100%;
+  height: 100vh;
 }
-
 .headerContainer {
   width: 100%;
   height: 70px;
