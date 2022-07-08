@@ -24,7 +24,6 @@ fetch("https://jsonplaceholder.typicode.com/todos/1/posts")
         const user1Posts = postElements.filter(
           (element) => element.userId === 1
         );
-        console.log(user1Posts);
         const user2Posts = postElements.filter(
           (element) => element.userId === 2
         );

@@ -8,7 +8,6 @@ const showPostsButton = document.getElementById("showPosts");
 let albumId = urlParams.get("album_id");
 let albumTitle = urlParams.get("album_title");
 let userName = urlParams.get("user_name");
-console.log(albumId);
 fetch(`https://jsonplaceholder.typicode.com/posts?user_id=${userId}`)
   .then((res) => res.json())
   .then((posts) => {
