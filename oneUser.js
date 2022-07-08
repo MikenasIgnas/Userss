@@ -71,7 +71,6 @@ legend.textContent = "ALBUMS";
 fetch(`https://jsonplaceholder.typicode.com/albums?user_id=${userId}`)
   .then((res) => res.json())
   .then((userAlbums) => {
-    console.log(userAlbums);
     userAlbums.map((album) => {
       if (userId == album.userId) {
         const albumContainer = document.createElement("ul");
@@ -79,7 +78,7 @@ fetch(`https://jsonplaceholder.typicode.com/albums?user_id=${userId}`)
         const albumListItemms = document.createElement("li");
         albumListItemms.innerHTML =
           album.title +
-          ` (<a href="./photos.html?user_id=${userId}&album_id=${album.userId}">Photos</a>)`;
+          ` (<a href="./photos.html?user_id=${userId}&album_id=${album.id}">Photos</a>)`;
         albumsWrapper.append(fieldSet);
         fieldSet.append(legend, albumContainer);
         albumContainer.append(albumListItemms);

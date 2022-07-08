@@ -21,3 +21,4 @@ fetch(`https://jsonplaceholder.typicode.com/albums/${albumId}/photos`)
       });
     }
   });
+console.log(albumId);
