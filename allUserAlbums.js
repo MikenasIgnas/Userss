@@ -10,48 +10,18 @@ fetch("https://jsonplaceholder.typicode.com/todos/1/albums")
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((res) => res.json())
       .then((names) => {
-        const userNames = names;
-        const user1Name = userNames.filter((element) => element.id === 1);
-        const user2Name = userNames.filter((element) => element.id === 2);
-        const user3Name = userNames.filter((element) => element.id === 3);
-        const user4Name = userNames.filter((element) => element.id === 4);
-        const user5Name = userNames.filter((element) => element.id === 5);
-        const user6Name = userNames.filter((element) => element.id === 6);
-        const user7Name = userNames.filter((element) => element.id === 7);
-        const user8Name = userNames.filter((element) => element.id === 8);
-        const user9Name = userNames.filter((element) => element.id === 9);
-        const user10Name = userNames.filter((element) => element.id === 10);
-        const AlbumElements = albums;
-        const user1Album = AlbumElements.filter(
-          (element) => element.userId === 1
-        );
-        const user2Album = AlbumElements.filter(
-          (element) => element.userId === 2
-        );
-        const user3Album = AlbumElements.filter(
-          (element) => element.userId === 3
-        );
-        const user4Album = AlbumElements.filter(
-          (element) => element.userId === 4
-        );
-        const user5Album = AlbumElements.filter(
-          (element) => element.userId === 5
-        );
-        const user6Album = AlbumElements.filter(
-          (element) => element.userId === 6
-        );
-        const user7Album = AlbumElements.filter(
-          (element) => element.userId === 7
-        );
-        const user8Album = AlbumElements.filter(
-          (element) => element.userId === 8
-        );
-        const user9Album = AlbumElements.filter(
-          (element) => element.userId === 9
-        );
-        const user10Album = AlbumElements.filter(
-          (element) => element.userId === 10
-        );
+        filterPosts = (idNumber) => {
+          const userPosts = albums.filter(
+            (element) => element.userId === idNumber
+          );
+          return userPosts;
+        };
+
+        filterNames = (idNumber) => {
+          const userName = names.filter((element) => element.id === idNumber);
+          return userName;
+        };
+
         function createAlbums(userAlbums, authorName) {
           const userName = document.createElement("p");
           const userAlbumElement = document.createElement("div");
@@ -82,15 +52,15 @@ fetch("https://jsonplaceholder.typicode.com/todos/1/albums")
           userAlbumElement.append(userAlbum);
           mainDiv.append(userAlbumElement);
         }
-        createAlbums(user1Album, user1Name);
-        createAlbums(user2Album, user2Name);
-        createAlbums(user3Album, user3Name);
-        createAlbums(user4Album, user4Name);
-        createAlbums(user5Album, user5Name);
-        createAlbums(user6Album, user6Name);
-        createAlbums(user7Album, user7Name);
-        createAlbums(user8Album, user8Name);
-        createAlbums(user9Album, user9Name);
-        createAlbums(user10Album, user10Name);
+        createAlbums(filterPosts(1), filterNames(1));
+        createAlbums(filterPosts(2), filterNames(2));
+        createAlbums(filterPosts(3), filterNames(3));
+        createAlbums(filterPosts(4), filterNames(4));
+        createAlbums(filterPosts(5), filterNames(5));
+        createAlbums(filterPosts(6), filterNames(6));
+        createAlbums(filterPosts(7), filterNames(7));
+        createAlbums(filterPosts(8), filterNames(8));
+        createAlbums(filterPosts(9), filterNames(9));
+        createAlbums(filterPosts(10), filterNames(10));
       });
   });

@@ -15,49 +15,16 @@ fetch("https://jsonplaceholder.typicode.com/todos/1/posts")
             textContent.slice(1).toLowerCase();
           return upperCaseText;
         };
-        const userNames = names;
-        const user1Name = userNames.filter((element) => element.id === 1);
-        const user2Name = userNames.filter((element) => element.id === 2);
-        const user3Name = userNames.filter((element) => element.id === 3);
-        const user4Name = userNames.filter((element) => element.id === 4);
-        const user5Name = userNames.filter((element) => element.id === 5);
-        const user6Name = userNames.filter((element) => element.id === 6);
-        const user7Name = userNames.filter((element) => element.id === 7);
-        const user8Name = userNames.filter((element) => element.id === 8);
-        const user9Name = userNames.filter((element) => element.id === 9);
-        const user10Name = userNames.filter((element) => element.id === 10);
-
-        const postElements = posts;
-        const user1Posts = postElements.filter(
-          (element) => element.userId === 1
-        );
-        const user2Posts = postElements.filter(
-          (element) => element.userId === 2
-        );
-        const user3Posts = postElements.filter(
-          (element) => element.userId === 3
-        );
-        const user4Posts = postElements.filter(
-          (element) => element.userId === 4
-        );
-        const user5Posts = postElements.filter(
-          (element) => element.userId === 5
-        );
-        const user6Posts = postElements.filter(
-          (element) => element.userId === 6
-        );
-        const user7Posts = postElements.filter(
-          (element) => element.userId === 7
-        );
-        const user8Posts = postElements.filter(
-          (element) => element.userId === 8
-        );
-        const user9Posts = postElements.filter(
-          (element) => element.userId === 9
-        );
-        const user10Posts = postElements.filter(
-          (element) => element.userId === 10
-        );
+        filterPosts = (idNumber) => {
+          const userPosts = posts.filter(
+            (element) => element.userId === idNumber
+          );
+          return userPosts;
+        };
+        filterNames = (idNumber) => {
+          const userName = names.filter((element) => element.id === idNumber);
+          return userName;
+        };
 
         function createPost(userPost, authorName) {
           const userPostElement = document.createElement("div");
@@ -78,15 +45,15 @@ fetch("https://jsonplaceholder.typicode.com/todos/1/posts")
             userName.innerHTML = `<a  style=font-size:25px class="hover-underline-animation"  href="./oneUser.html?user_id=${authorName[key].id}">${userNames}</a>`;
           }
         }
-        createPost(user1Posts, user1Name);
-        createPost(user2Posts, user2Name);
-        createPost(user3Posts, user3Name);
-        createPost(user4Posts, user4Name);
-        createPost(user5Posts, user5Name);
-        createPost(user6Posts, user6Name);
-        createPost(user7Posts, user7Name);
-        createPost(user8Posts, user8Name);
-        createPost(user9Posts, user9Name);
-        createPost(user10Posts, user10Name);
+        createPost(filterPosts(1), filterNames(1));
+        createPost(filterPosts(2), filterNames(2));
+        createPost(filterPosts(3), filterNames(3));
+        createPost(filterPosts(4), filterNames(4));
+        createPost(filterPosts(5), filterNames(5));
+        createPost(filterPosts(6), filterNames(6));
+        createPost(filterPosts(7), filterNames(7));
+        createPost(filterPosts(8), filterNames(8));
+        createPost(filterPosts(9), filterNames(9));
+        createPost(filterPosts(10), filterNames(10));
       });
   });
