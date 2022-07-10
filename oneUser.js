@@ -13,6 +13,13 @@ fetch(`https://jsonplaceholder.typicode.com/posts?user_id=${userId}`)
   .then((posts) => {
     posts.map((post) => {
       if (userId == post.userId) {
+        upperCase = (objectItem) => {
+          const textContent = objectItem;
+          upperCaseText =
+            textContent.charAt(0).toUpperCase() +
+            textContent.slice(1).toLowerCase();
+          return upperCaseText;
+        };
         const updatedTitle = post.title[0].toUpperCase() + post.title.slice(1);
 
         const postItem = document.createElement("div");
@@ -20,19 +27,20 @@ fetch(`https://jsonplaceholder.typicode.com/posts?user_id=${userId}`)
 
         const postTitle = document.createElement("h5");
         postTitle.classList.add("post-title");
-        postTitle.textContent = updatedTitle;
+        postTitle.textContent = "Title: " + updatedTitle;
 
         const postAuthor = document.createElement("span");
         postAuthor.classList.add("post-author");
 
         const postBody = document.createElement("p");
+
         postBody.classList.add("post-content");
-        postBody.textContent = post.body;
+        postBody.textContent = "Post: " + upperCase(post.body);
 
         const commentsWrapper = document.createElement("div");
         commentsWrapper.classList.add("comments-wrapper");
 
-        postItem.append(postTitle, postAuthor, postBody, commentsWrapper);
+        postItem.append(postAuthor, postTitle, postBody, commentsWrapper);
         postsWrapper.append(postItem);
         fetch("https://jsonplaceholder.typicode.com/users/" + userId)
           .then((res) => res.json())

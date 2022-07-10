@@ -1,3 +1,8 @@
+const queryParams = document.location.search;
+const urlParams = new URLSearchParams(queryParams);
+const userId = urlParams.get("user_id");
+const userPhotos = document.getElementById("photos");
+let albumId = urlParams.get("album_id");
 const mainDiv = document.getElementById("mainDiv");
 fetch("https://jsonplaceholder.typicode.com/todos/1/albums")
   .then((res) => res.json())
@@ -52,10 +57,21 @@ fetch("https://jsonplaceholder.typicode.com/todos/1/albums")
           const userAlbumElement = document.createElement("div");
           const userAlbum = document.createElement("ul");
           for (let key in Object.keys(userAlbums)) {
+            upperCase = (objectItem) => {
+              const textContent = objectItem;
+              upperCaseText =
+                textContent.charAt(0).toUpperCase() +
+                textContent.slice(1).toLowerCase();
+              return upperCaseText;
+            };
             userAlbumElement.classList.add(`userAlbumElement`);
             const userAlbumList = document.createElement("li");
             userAlbumList.classList.add("userAlbumList");
-            userAlbumList.textContent = userAlbums[key].title;
+            userAlbumList.innerHTML = `<a href="./photos.html?user_id=${userId}&album_id=${
+              userAlbums[key].id
+            }" class="hover-underline-animation">${upperCase(
+              userAlbums[key].title
+            )}</a>`;
             userAlbum.append(userAlbumList);
             userAlbum.prepend(userName);
           }

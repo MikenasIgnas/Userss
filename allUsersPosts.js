@@ -8,6 +8,13 @@ fetch("https://jsonplaceholder.typicode.com/todos/1/posts")
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((res) => res.json())
       .then((names) => {
+        upperCase = (objectItem) => {
+          const textContent = objectItem;
+          upperCaseText =
+            textContent.charAt(0).toUpperCase() +
+            textContent.slice(1).toLowerCase();
+          return upperCaseText;
+        };
         const userNames = names;
         const user1Name = userNames.filter((element) => element.id === 1);
         const user2Name = userNames.filter((element) => element.id === 2);
@@ -58,11 +65,8 @@ fetch("https://jsonplaceholder.typicode.com/todos/1/posts")
           userPostElement.classList.add("userPostElement");
           for (let key in Object.keys(userPost)) {
             const userPostInfo = document.createElement("p");
-            const userInput = userPost[key].body;
-            userPostInfo.append(
-              userInput.charAt(0).toUpperCase() +
-                userInput.slice(1).toLowerCase()
-            );
+            const userInput = upperCase(userPost[key].body);
+            userPostInfo.append(userInput);
 
             userPostElement.append(userPostInfo);
             userPostElement.prepend(userName);
