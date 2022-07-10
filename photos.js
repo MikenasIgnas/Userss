@@ -10,6 +10,7 @@ let userName = urlParams.get("user_name");
 fetch(`https://jsonplaceholder.typicode.com/albums/${albumId}/photos`)
   .then((res) => res.json())
   .then((photos) => {
+    console.log(photos[1]);
     if (photos.length > 0) {
       photos.map((photo) => {
         const imageContainer = document.createElement("div");

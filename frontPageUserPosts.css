@@ -1,0 +1,32 @@
+body {
+  background-color: lightgrey;
+}
+.userBox {
+  padding: 20px;
+
+  background-color: white;
+  margin-bottom: 20px;
+}
+.showComments {
+  background-color: darkgrey;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  width: 70px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+.commentBox {
+  margin-top: 15px;
+  padding: 20px;
+  color: white;
+  background-color: rgb(128, 124, 124);
+}
+.authorID {
+  color: black;
+}
+.authorPostInfo {
+  height: 230px;
+}

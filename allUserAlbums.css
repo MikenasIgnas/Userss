@@ -5,6 +5,10 @@
 .headerContainer {
   width: 100%;
   height: 70px;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1;
 }
 .header {
   margin: auto;
@@ -50,4 +54,34 @@ a {
   gap: 10px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+a:hover {
+  color: rgb(11, 20, 150);
+}
+.hover-underline-animation {
+  display: inline-block;
+  position: relative;
+}
+
+.hover-underline-animation:after {
+  content: "";
+
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: rgb(11, 20, 150);
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animation:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }

@@ -1,0 +1,22 @@
+.userPhotosContainer {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: rgb(255, 255, 255);
+  width: 250px;
+  height: 260px;
+  margin-bottom: 20px;
+}
+.photo {
+  width: 150px;
+  height: 150px;
+}
+h5 {
+  margin: 0px;
+  font-size: 16px;
+}
+a {
+  font-size: 16px;
+}

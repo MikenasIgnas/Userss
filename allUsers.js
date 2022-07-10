@@ -6,7 +6,7 @@ fetch("https://jsonplaceholder.typicode.com/users")
     user.map((user) => {
       let userInfoContainer = document.createElement("div");
       userInfoContainer.classList.add("userInfoContainer");
-      userInfoContainer.innerHTML = `<div class="ItemContent"><div class="itemHeader"><h2><a href="./oneUser.html?user_id=${user.id}">${user.name} (${user.username})</a></h2></div>
+      userInfoContainer.innerHTML = `<div class="ItemContent"><div class="itemHeader"><h2><a class="hover-underline-animation" href="./oneUser.html?user_id=${user.id}">${user.name} (${user.username})</a></h2></div>
                            <div class="itemListElement"> <ul class="listItems">
                               <li><strong>Email:</strong> <a href="mailto:${user.email}">${user.email}</a></li>
                               <li><strong>Phone:</strong> <a href="tel:${user.phone}">${user.phone}</a></li>
