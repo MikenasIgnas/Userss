@@ -1,11 +1,15 @@
 const mainDiv = document.getElementById("mainDiv");
 
-fetch("https://jsonplaceholder.typicode.com/todos/1/posts?_limit=10&_start=0")
+fetch("https://jsonplaceholder.typicode.com/todos/1/posts")
   .then((response) => response.json())
   .then((data) => {
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((res) => res.json())
       .then((user) => {
+        postFilter = data.filter(function (value, index, Arr) {
+          return index % 10 == 0;
+        });
+
         for (let key of Object.keys(data)) {
           upperCase = (objectItem) => {
             const textContent = objectItem;
@@ -27,10 +31,10 @@ fetch("https://jsonplaceholder.typicode.com/todos/1/posts?_limit=10&_start=0")
           userBox.innerHTML = `
           <div class="authorPostInfo">
           <a class="hover-underline-animation" href="./oneUser.html?user_id=${
-            user[key].id
+            postFilter[key].userId
           }">Author: ${user[key].name}</a>
-          <h3>Title: ${upperCase(data[key].title)}</h3>
-          <p>Post: ${upperCase(data[key].body)}</p>
+          <h3>Title: ${upperCase(postFilter[key].title)}</h3>
+          <p>Post: ${upperCase(postFilter[key].body)}</p>
           </div>`;
 
           showComments.addEventListener("click", displayComment);
@@ -40,9 +44,7 @@ fetch("https://jsonplaceholder.typicode.com/todos/1/posts?_limit=10&_start=0")
           function displayComment() {
             clicked = true;
             if (clicked && showComments.textContent === "Show") {
-              fetch(
-                "https://jsonplaceholder.typicode.com/todos/1/comments?_limit=10&_start=0"
-              )
+              fetch("https://jsonplaceholder.typicode.com/todos/1/comments")
                 .then((res) => res.json())
                 .then((comments) => {
                   if (data[key].id === comments[key].id) {

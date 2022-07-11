@@ -28,15 +28,22 @@ fetch("https://jsonplaceholder.typicode.com/todos/1/posts")
 
         function createPost(userPost, authorName) {
           const userPostElement = document.createElement("div");
-          const userName = document.createElement("p");
+          const userName = document.createElement("div");
           userPostElement.classList.add("userPostElement");
           for (let key in Object.keys(userPost)) {
-            const userPostInfo = document.createElement("p");
-            const userInput = upperCase(userPost[key].body);
-            userPostInfo.append(userInput);
+            const userPostInfoContainer = document.createElement("div");
+            userPostInfoContainer.classList.add("userPostInfoContainer");
+            const userPostBody = document.createElement("p");
+            const userPostTitle = document.createElement("h4");
+            userPostTitle.textContent = "Title:  " + userPost[key].title;
 
-            userPostElement.append(userPostInfo);
+            userPostBody.innerHTML = `<strong>Post:</strong>  ${upperCase(
+              userPost[key].body
+            )}`;
+
+            userPostInfoContainer.append(userPostTitle, userPostBody);
             userPostElement.prepend(userName);
+            userPostElement.append(userPostInfoContainer);
             mainDiv.append(userPostElement);
           }
           for (let key in Object.keys(authorName)) {

@@ -10,6 +10,7 @@ fetch("https://jsonplaceholder.typicode.com/todos/1/albums")
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((res) => res.json())
       .then((names) => {
+        console.log(names);
         filterPosts = (idNumber) => {
           const userPosts = albums.filter(
             (element) => element.userId === idNumber
@@ -37,7 +38,9 @@ fetch("https://jsonplaceholder.typicode.com/todos/1/albums")
             userAlbumElement.classList.add(`userAlbumElement`);
             const userAlbumList = document.createElement("li");
             userAlbumList.classList.add("userAlbumList");
-            userAlbumList.innerHTML = `<a href="./photos.html?user_id=${userId}&album_id=${
+            userAlbumList.innerHTML = `<a href="./photos.html?user_id=${
+              names[key].id
+            }&album_id=${
               userAlbums[key].id
             }" class="hover-underline-animation">${upperCase(
               userAlbums[key].title

@@ -4,7 +4,11 @@
 .userAlbumElement {
   background-color: rgb(94, 175, 148);
 }
-
+.userPostInfoContainer {
+  padding: 10px;
+  border: 1px solid black;
+  margin-bottom: 10px;
+}
 .headerContainer {
   width: 100%;
   height: 70px;
@@ -84,4 +88,7 @@ a:hover {
 .hover-underline-animation:hover:after {
   transform: scaleX(1);
   transform-origin: bottom left;
+}
+h4 {
+  text-decoration: underline;
 }
