@@ -9,10 +9,13 @@
 .albumBox {
   width: 50%;
   height: 100px;
-  background-color: red;
   margin-top: 50px;
-  text-align: center;
+  text-align: left;
   margin: auto;
   max-width: 350px;
-  line-height: 50px;
+  line-height: px;
+}
+.albumContainer {
+  padding: 25px;
+  background-color: rgb(126, 162, 190);
 }

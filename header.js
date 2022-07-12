@@ -17,7 +17,7 @@ createHeader = () => {
   postsOption.textContent = "Posts";
   userOption.textContent = "User";
   albumOption.textContent = "Album";
-  inputElement.placeholder = "Search";
+  inputElement.placeholder = "Search For User";
   inputElement.name = "search";
   selectElement.name = "variations";
   header.classList.add("header");
@@ -38,40 +38,46 @@ createHeader = () => {
   headerContainer.append(header);
   header.append(headerItems);
 
+  selectElement.addEventListener("click", (e) => {
+    let select = e.target.value;
+    inputElement.placeholder = "Search For " + select;
+  });
+
   searchForm.addEventListener("submit", (e) => {
     e.preventDefault();
-
     let searchVariation = e.target.elements.variations.value;
     let searchInput = e.target.elements.search.value;
-
     if (searchVariation === userOption.textContent) {
-      inputElement.placeholder = "Search";
       fetch("https://jsonplaceholder.typicode.com/users")
         .then((res) => res.json())
         .then((data) => {
           data.map((user) => {
             if (searchInput !== "" && user.name.includes(searchInput)) {
               window.location.assign(`./oneUser.html?user_id=${user.id}`);
-              console.log(window.location);
-            } else {
-              inputElement.placeholder = "No User Found";
             }
           });
         });
     } else if (searchVariation === albumOption.textContent) {
-      inputElement.placeholder = "Search";
       fetch(`https://jsonplaceholder.typicode.com/albums?user_id=${userId}`)
         .then((res) => res.json())
         .then((albums) => {
           albums.map((album) => {
-            console.log(album);
-            if (searchInput !== "" && album.title === searchInput) {
+            if (searchInput !== "" && album.title.includes(searchInput)) {
               window.location.assign(
-                `./oneAlbum.html?user_id=${userId}&album_id=${album.id}&album_title=${album.title}`
+                `./albumSearchPage.html?user_id=${userId}&album_id=${album.id}&album_title=${album.title}&search_word=${searchInput}`
               );
-              console.log(window.location);
-            } else {
-              inputElement.placeholder = "No User Found";
+            }
+          });
+        });
+    } else if (searchVariation === postsOption.textContent) {
+      fetch(`https://jsonplaceholder.typicode.com/posts?user_id=${userId}`)
+        .then((res) => res.json())
+        .then((posts) => {
+          posts.map((post) => {
+            if (searchInput !== "" && post.title.includes(searchInput)) {
+              window.location.assign(
+                `./postSearchPage.html?user_id=${userId}&post=${post.id}&post_title=${post.title}&search_word=${searchInput}`
+              );
             }
           });
         });
@@ -79,6 +85,7 @@ createHeader = () => {
 
     inputElement.value = "";
   });
+
   headerItems.append(
     homeElement,
     usersElement,

@@ -2,6 +2,7 @@ const mainDiv = document.getElementById("mainDiv");
 const queryParams = document.location.search;
 const urlParams = new URLSearchParams(queryParams);
 const userId = urlParams.get("user_id");
+
 fetch("https://jsonplaceholder.typicode.com/todos/1/posts")
   .then((res) => res.json())
   .then((posts) => {
