@@ -1,10 +1,6 @@
 body {
   margin: 0px;
 }
-#photos {
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-}
 
 .homePageContainer {
   width: 100%;
@@ -13,17 +9,19 @@ body {
 }
 
 .homePage {
-  align-items: center;
-  margin: auto;
-  padding-top: 70px;
-  max-width: 1500px;
-
-  height: 1000px;
-  background-color: rgb(104, 105, 184);
+  padding-top: 50px;
+  padding-bottom: 50px;
   width: 100%;
 }
 .homePageInfo {
   width: 100%;
   text-align: center;
   line-height: 100px;
+}
+
+.swiper-slide {
+  background-color: rgb(104, 105, 184);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

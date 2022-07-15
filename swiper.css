@@ -1,0 +1,21 @@
+.swiper {
+  background-color: white;
+  width: 250px;
+  z-index: 0;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.swiper-slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.swiper-wrapper {
+  height: 0;
+}
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  margin-top: 80px;
+}

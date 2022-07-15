@@ -37,50 +37,60 @@ createHeader = () => {
   searchForm.append(inputElement, selectElement);
   headerContainer.append(header);
   header.append(headerItems);
-
   selectElement.addEventListener("click", (e) => {
     let select = e.target.value;
     inputElement.placeholder = "Search For " + select;
   });
-
   searchForm.addEventListener("submit", (e) => {
     e.preventDefault();
     let searchVariation = e.target.elements.variations.value;
     let searchInput = e.target.elements.search.value;
-    if (searchVariation === userOption.textContent) {
-      fetch("https://jsonplaceholder.typicode.com/users")
+    const searchFunction = ({
+      fetchUrlEnd,
+      searchDataName,
+      createRedirectUrl,
+    }) => {
+      fetch(`https://jsonplaceholder.typicode.com/${fetchUrlEnd}`)
         .then((res) => res.json())
         .then((data) => {
-          data.map((user) => {
-            if (searchInput !== "" && user.name.includes(searchInput)) {
-              window.location.assign(`./oneUser.html?user_id=${user.id}`);
+          data.map((dataItem) => {
+            if (
+              searchInput !== "" &&
+              dataItem?.[searchDataName].includes(searchInput)
+            ) {
+              window.location.assign(createRedirectUrl(dataItem));
             }
           });
         });
+    };
+
+    if (searchVariation === userOption.textContent) {
+      const createUserUrl = (user) => {
+        return `./oneUser.html?user_id=${user.id}`;
+      };
+      searchFunction({
+        fetchUrlEnd: "users",
+        searchDataName: "name",
+        createRedirectUrl: createUserUrl,
+      });
     } else if (searchVariation === albumOption.textContent) {
-      fetch(`https://jsonplaceholder.typicode.com/albums?user_id=${userId}`)
-        .then((res) => res.json())
-        .then((albums) => {
-          albums.map((album) => {
-            if (searchInput !== "" && album.title.includes(searchInput)) {
-              window.location.assign(
-                `./albumSearchPage.html?user_id=${userId}&album_id=${album.id}&album_title=${album.title}&search_word=${searchInput}`
-              );
-            }
-          });
-        });
+      const createAlbumUrl = (album) => {
+        return `./albumSearchPage.html?user_id=${userId}&album_id=${album.id}&album_title=${album.title}&search_word=${searchInput}`;
+      };
+      searchFunction({
+        fetchUrlEnd: `albums?user_id=${userId}`,
+        searchDataName: "title",
+        createRedirectUrl: createAlbumUrl,
+      });
     } else if (searchVariation === postsOption.textContent) {
-      fetch(`https://jsonplaceholder.typicode.com/posts?user_id=${userId}`)
-        .then((res) => res.json())
-        .then((posts) => {
-          posts.map((post) => {
-            if (searchInput !== "" && post.title.includes(searchInput)) {
-              window.location.assign(
-                `./postSearchPage.html?user_id=${userId}&post=${post.id}&post_title=${post.title}&search_word=${searchInput}`
-              );
-            }
-          });
-        });
+      const createPostmUrl = (post) => {
+        return `./postSearchPage.html?user_id=${userId}&post=${post.id}&post_title=${post.title}&search_word=${searchInput}`;
+      };
+      searchFunction({
+        fetchUrlEnd: `posts?user_id=${userId}`,
+        searchDataName: "title",
+        createRedirectUrl: createPostmUrl,
+      });
     }
 
     inputElement.value = "";

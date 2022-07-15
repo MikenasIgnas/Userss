@@ -12,7 +12,7 @@
     <div class="mainContainer">
       <div class="headerContainer" id="headerContainer"></div>
       <div class="homePageContainer">
-        <div class="homePage">
+        <div class="homePage" id="homePage">
           <div class="homePageInfo">
             <div id="user-info"></div>
             <div id="posts-wrapper"></div>
@@ -22,6 +22,33 @@
       </div>
     </div>
   </body>
+
   <script src="header.js"></script>
   <script src="allUsers.js"></script>
+  <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+  <script>
+    const swiper = new Swiper(".swiper", {
+      // Optional parameters
+
+      loop: true,
+
+      // If we need pagination
+      pagination: {
+        el: ".swiper-pagination",
+      },
+      observer: true,
+      observeParents: true,
+      // Navigation arrows
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+
+      // And if we need scrollbar
+      scrollbar: {
+        el: ".swiper-scrollbar",
+      },
+    });
+  </script>
+  <script></script>
 </html>

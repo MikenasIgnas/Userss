@@ -5,26 +5,59 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Photos</title>
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="photos.css" />
     <link
       rel="stylesheet"
       href="header.css
-    "
+  "
     />
-    <link rel="stylesheet" href="photos.css" />
   </head>
   <body>
     <div class="mainContainer">
       <div class="headerContainer" id="headerContainer"></div>
       <div class="homePageContainer">
         <div class="homePage">
-          <div class="homePageInfo">
-            <div id="photos"></div>
-            <div id="album-wrapper"></div>
+          <div class="swiper">
+            <div id="photos" class="swiper-wrapper"></div>
+            <div class="swiper-pagination"></div>
+
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
+            <!-- If we need scrollbar -->
+            <div class="swiper-scrollbar"></div>
           </div>
         </div>
       </div>
     </div>
   </body>
-  <script src="header.js"></script>
+  <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
   <script src="photos.js"></script>
+  <script src="header.js"></script>
+  <script>
+    const swiper = new Swiper(".swiper", {
+      // Optional parameters
+
+      loop: true,
+
+      // If we need pagination
+      pagination: {
+        el: ".swiper-pagination",
+      },
+
+      // Navigation arrows
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+
+      // And if we need scrollbar
+    });
+  </script>
 </html>
