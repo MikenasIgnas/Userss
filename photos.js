@@ -12,10 +12,10 @@ fetch(`https://jsonplaceholder.typicode.com/albums/${albumId}/photos`)
   .then((photos) => {
     if (photos.length > 0) {
       photos.map((photo) => {
+        console.log(photos);
         const imageContainer = document.createElement("div");
-        imageContainer.classList.add("imageContainer");
-
-        imageContainer.innerHTML = `<img style="width:150px" src="${photo.url}">`;
+        imageContainer.classList.add("swiper-slide");
+        imageContainer.innerHTML = `<img  style="width:400px" src="${photo.url}">`;
         userPhotos.append(imageContainer);
       });
     }

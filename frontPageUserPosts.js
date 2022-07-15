@@ -1,68 +1,45 @@
 const mainDiv = document.getElementById("mainDiv");
-
-fetch("https://jsonplaceholder.typicode.com/todos/1/posts?_limit=10&_start=0")
-  .then((response) => response.json())
-  .then((data) => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((res) => res.json())
-      .then((user) => {
-        for (let key of Object.keys(data)) {
-          upperCase = (objectItem) => {
-            const textContent = objectItem;
-            upperCaseText =
-              textContent.charAt(0).toUpperCase() +
-              textContent.slice(1).toLowerCase();
-            return upperCaseText;
-          };
-
-          const userBox = document.createElement("div");
-          const showComments = document.createElement("button");
-          showComments.value = `${key}`;
-          showComments.textContent = "Show";
-          showComments.classList.add(
-            "hover-underline-animation",
-            "showComments"
-          );
-          userBox.classList.add("userBox");
-          userBox.innerHTML = `
+fetch("https://jsonplaceholder.typicode.com/users?_embed=posts")
+  .then((res) => res.json())
+  .then((data) =>
+    data.map((posts, i) => {
+      const userBox = document.createElement("div");
+      const showComments = document.createElement("button");
+      showComments.value = `${i}`;
+      showComments.textContent = "Show";
+      showComments.classList.add("hover-underline-animation", "showComments");
+      userBox.classList.add("userBox");
+      userBox.innerHTML = `
           <div class="authorPostInfo">
-          <a class="hover-underline-animation" href="./oneUser.html?user_id=${
-            user[key].id
-          }">Author: ${user[key].name}</a>
-          <h3>Title: ${upperCase(data[key].title)}</h3>
-          <p>Post: ${upperCase(data[key].body)}</p>
+          <a class="hover-underline-animation" href="./oneUser.html?user_id=${posts.id}">Author: ${posts.name}</a>
+          <h3>Title: ${posts.posts[0].title}</h3>
+          <p>Post: ${posts.posts[0].body}</p>
           </div>`;
 
-          showComments.addEventListener("click", displayComment);
-          mainDiv.append(userBox);
-          userBox.append(showComments);
-          const commentBox = document.createElement("div");
-          function displayComment() {
-            clicked = true;
-            if (clicked && showComments.textContent === "Show") {
-              fetch(
-                "https://jsonplaceholder.typicode.com/todos/1/comments?_limit=10&_start=0"
-              )
-                .then((res) => res.json())
-                .then((comments) => {
-                  if (data[key].id === comments[key].id) {
-                    commentBox.innerHTML = `<p>Comment title: ${upperCase(
-                      comments[key].name
-                    )}</p><p>Comment: ${upperCase(comments[key].body)}</p>`;
-                  }
-                  userBox.append(commentBox);
-                  commentBox.classList.add("commentBox");
-                  showComments.textContent = "Hide";
-                  commentBox.style.display = "block";
-                  showComments.addEventListener("click", () => {
-                    if ((showComments.textContent = "Hide")) {
-                      showComments.textContent = "Show";
-                      commentBox.style.display = "none";
-                    }
-                  });
-                });
-            }
-          }
+      mainDiv.append(userBox);
+      userBox.append(showComments);
+      const commentBox = document.createElement("div");
+      const displayComment = () => {
+        if (showComments.textContent === "Show") {
+          fetch("https://jsonplaceholder.typicode.com/todos/1/comments")
+            .then((res) => res.json())
+            .then((comments) => {
+              if (data[0].id === comments[0].id) {
+                commentBox.innerHTML = `<p>Comment title: ${comments[0].name}</p><p>Comment: ${comments[0].body}</p>`;
+              }
+              userBox.append(commentBox);
+              commentBox.classList.add("commentBox");
+              showComments.textContent = "Hide";
+              commentBox.style.display = "block";
+              showComments.addEventListener("click", () => {
+                if ((showComments.textContent = "Hide")) {
+                  showComments.textContent = "Show";
+                  commentBox.style.display = "none";
+                }
+              });
+            });
         }
-      });
-  });
+      };
+      showComments.addEventListener("click", displayComment);
+    })
+  );

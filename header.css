@@ -1,13 +1,9 @@
-.userPostElement {
-  background-color: rgb(186, 187, 233);
+body {
+  margin: 0px;
+  padding: 0px;
 }
-.userAlbumElement {
-  background-color: rgb(94, 175, 148);
-}
-.userPostInfoContainer {
-  padding: 10px;
-  border: 1px solid black;
-  margin-bottom: 10px;
+.mainContainer {
+  width: 100%;
 }
 .headerContainer {
   width: 100%;
@@ -29,36 +25,13 @@
 }
 .headerItems {
   margin: auto;
-
   width: 700px;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
-.homePage {
-  align-items: center;
-  margin: auto;
 
-  max-width: 1000px;
-
-  background-color: rgb(104, 105, 184);
-  width: 100%;
-}
-.homePageInfo {
-  width: 100%;
-}
-
-.authorName {
-  font-size: 20px;
-}
-.userPostElement {
-  margin-bottom: 20px;
-  padding: 20px;
-}
-#mainDiv {
-  padding-top: 10px;
-}
 a {
   text-decoration: none;
   color: black;
@@ -88,7 +61,4 @@ a:hover {
 .hover-underline-animation:hover:after {
   transform: scaleX(1);
   transform-origin: bottom left;
-}
-h4 {
-  text-decoration: underline;
 }

@@ -5,20 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>OneUser</title>
+    <link rel='stylesheet' href='header.css'>
     <link rel="stylesheet" href="oneUser.css" />
   </head>
   <body>
     
 <div class="mainContainer">
-  <div class="headerContainer">
-    <div class="header">
-      <div class="headerItems">
-        <a class="hover-underline-animation" href="./index.html">Home</a>
-        <a class="hover-underline-animation" href="./allUsers.html">Users</a>
-        <a class="hover-underline-animation" href="./allUsersPosts.html">Posts</a>
-        <a class="hover-underline-animation" href="./allUserAlbums.html">Albums</a>
-      </div>
-    </div>
+  <div class="headerContainer" id="headerContainer">
+    
   </div>
   <div class="homePageContainer">
     <div class="homePage">
@@ -26,8 +20,8 @@
         <div class="userBox">
           <div id="user-info"></div>
           <div id="buttons">
-            <input id="showPosts" type="button" value="Show Posts" onclick="return change(this,'Show Posts','Hide',postsWrapper);"></input>
-            <input id="showAlbums" type="button" value="Show Albums" onclick="return change(this,'Show Albums','Hide',albumsWrapper);"></input>
+            <input id="showPosts" type="button" value="Show Posts" onclick=" change(this,'Show Posts','Hide',postsWrapper);"></input>
+            <input id="showAlbums" type="button" value="Show Albums" onclick=" change(this,'Show Albums','Hide',albumsWrapper);"></input>
           </div>
         </div>
           <div class="postsAlbumContainer">
@@ -38,6 +32,7 @@
   </div>
 </div>
   </body>
+  <script src="header.js"></script>
   <script src="oneUser.js"></script>
 </html>
 

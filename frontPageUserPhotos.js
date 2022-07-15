@@ -1,42 +1,39 @@
-const oneUserPhoto = document.getElementById("oneUserPhoto");
-fetch("https://jsonplaceholder.typicode.com/users")
-  .then((res) => res.json())
-  .then((users) => {
-    fetch("https://jsonplaceholder.typicode.com/photos?_limit=500")
-      .then((res) => res.json())
-      .then((photos) => {
-        photoFilter = photos.filter(function (value, index, Arr) {
-          return index % 50 == 0;
-        });
-        for (let key in Object.keys(photoFilter)) {
-          upperCase = (objectItem) => {
-            const textContent = objectItem;
-            upperCaseText =
-              textContent.charAt(0).toUpperCase() +
-              textContent.slice(1).toLowerCase();
-            return upperCaseText;
-          };
-          const userPhotosContainer = document.createElement("div");
-          const infoContainer = document.createElement("div");
-          const photo = document.createElement("div");
-          const author = document.createElement("a");
-          author.href = `./oneUser.html?user_id=${users[key].id}`;
-          author.classList.add("hover-underline-animation");
-          const title = document.createElement("h3");
-          const button = document.createElement("a");
-          button.textContent = "See all albums";
-          button.href = `./oneUserAlbums.html?user_id=${users[key].id}`;
-          button.classList.add("hover-underline-animation");
-          userPhotosContainer.classList.add("userPhotosContainer");
-          photo.classList.add("photo");
-          photo.innerHTML = `<img src=${photoFilter[key].thumbnailUrl}>`;
-          author.textContent = `Author: ${users[key].name}`;
-          title.textContent = `Album title: ${upperCase(
-            photoFilter[key].title
-          )}`;
-          oneUserPhoto.append(userPhotosContainer);
-          userPhotosContainer.append(infoContainer, photo, button);
-          infoContainer.append(author, title);
-        }
+createSwiper = (itemId, userIndex, albumTitleId) => {
+  const photoTest = document.getElementById(itemId);
+  const albumTitle = document.getElementById(albumTitleId);
+  albumTitle.style.textAlign = "center";
+  albumTitle.style.paddingLeft = "20px";
+  albumTitle.style.paddingRight = "20px";
+  albumTitle.style.paddingTop = "20px";
+  fetch("https://jsonplaceholder.typicode.com/albums/?_embed=photos")
+    .then((res) => res.json())
+    .then((data) => {
+      const firstAlbumTitleAndPhotos = data.filter(function (value, index) {
+        return index % 10 === 0;
       });
-  });
+      firstAlbumTitleAndPhotos.map((data) => {
+        albumTitle.textContent =
+          "Album Title: " + firstAlbumTitleAndPhotos[userIndex].title;
+        const photoContainer = document.createElement("div");
+        const photoTitleContainer = document.createElement("div");
+        photoTitleContainer.classList.add("photoTitleContainer");
+        photoContainer.classList.add("swiper-slide");
+        photoContainer.innerHTML = `<img src="${data.photos[userIndex].thumbnailUrl}" />`;
+        photoTitleContainer.textContent =
+          "Photo: " + data.photos[userIndex].title;
+
+        photoTest.append(photoContainer);
+        photoContainer.prepend(photoTitleContainer);
+      });
+    });
+};
+createSwiper("photoTest", 0, "albumTitle1");
+createSwiper("photoTest2", 1, "albumTitle2");
+createSwiper("photoTest3", 2, "albumTitle3");
+createSwiper("photoTest4", 9, "albumTitle4");
+createSwiper("photoTest5", 4, "albumTitle5");
+createSwiper("photoTest6", 5, "albumTitle6");
+createSwiper("photoTest7", 6, "albumTitle7");
+createSwiper("photoTest8", 7, "albumTitle8");
+createSwiper("photoTest9", 8, "albumTitle9");
+createSwiper("photoTest10", 9, "albumTitle10");
