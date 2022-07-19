@@ -9,10 +9,14 @@ formContainer.style.display = 'flex';
 formContainer.style.flexDirection = 'column';
 formContainer.style.justifyContent = 'center';
 formContainer.style.alignItems = 'center';
-const form = document.createElement('form');
 const createForm = () => {
+  const form = document.createElement('form');
+  const button = document.createElement('button');
+  button.style.width = '70px';
+  button.style.height = '20px';
+  button.textContent = 'Submit';
   form.style.width = '50%';
-  form.style.height = '300px';
+  form.style.height = '340px';
   form.style.margin = 'auto';
   form.style.display = 'flex';
   form.style.alignItems = 'center';
@@ -90,33 +94,37 @@ const createForm = () => {
       })
         .then((response) => response.json())
         .then((json) => {
-          const searchVariation = e.target.elements.variations.value;
-          const postContainer = document.createElement('div');
-          const postAuthor = document.createElement('div');
-          const postTitle = document.createElement('div');
-          const postBody = document.createElement('div');
-          postAuthor.textContent = `Author: ${searchVariation}`;
-          postTitle.textContent = `Title: ${json.title}`;
-          postBody.textContent = `Body: ${json.body}`;
+          if (inputElement.value !== '' && textAreaElement.value !== '') {
+            const searchVariation = e.target.elements.variations.value;
+            const postContainer = document.createElement('div');
+            const postAuthor = document.createElement('div');
+            const postTitle = document.createElement('div');
+            const postBody = document.createElement('div');
+            postAuthor.textContent = `Author: ${searchVariation}`;
+            postTitle.textContent = `Title: ${json.title}`;
+            postBody.textContent = `Body: ${json.body}`;
 
-          postAuthor.style.height = '25px';
-          postTitle.style.height = '25px';
+            postAuthor.style.height = '25px';
+            postTitle.style.height = '25px';
 
-          postContainer.style.width = '50%';
-          postContainer.style.textAlign = 'left';
-          postContainer.style.marginTop = '20px';
-          postContainer.style.marginBottom = '20px';
+            postContainer.style.width = '50%';
+            postContainer.style.textAlign = 'left';
+            postContainer.style.marginTop = '20px';
+            postContainer.style.marginBottom = '20px';
 
-          postContainer.style.backgroundColor = 'lightgray';
-          postAuthor.style.marginLeft = '30px';
-          postTitle.style.marginLeft = '30px';
-          postBody.style.marginLeft = '30px';
+            postContainer.style.backgroundColor = 'lightgray';
+            postAuthor.style.marginLeft = '30px';
+            postTitle.style.marginLeft = '30px';
+            postBody.style.marginLeft = '30px';
 
-          postContainer.append(postAuthor, postTitle, postBody);
-          formContainer.append(postContainer);
+            postContainer.append(postAuthor, postTitle, postBody);
+            formContainer.append(postContainer);
+            inputElement.value = '';
+            textAreaElement.value = '';
+          } else {
+            alert('Iput fields are not filled');
+          }
         });
-      inputElement.value = '';
-      textAreaElement.value = '';
     });
     return containerElement;
   };
@@ -129,7 +137,7 @@ const createForm = () => {
   });
   const postTitleContainer = createInput();
   selectContainer.append(selectTitle, selectElement);
-  form.append(selectContainer, postTitleContainer);
+  form.append(selectContainer, postTitleContainer, button);
   formContainer.append(form);
 };
 createForm();
