@@ -1,37 +1,37 @@
-const mainDiv = document.getElementById("mainDiv");
-const queryParams = document.location.search;
-const urlParams = new URLSearchParams(queryParams);
-const userId = urlParams.get("user_id");
+import { createHeader } from './header.js';
+import { firstLetterUpercase } from './utility.js';
 
-fetch("https://jsonplaceholder.typicode.com/users/?_embed=posts")
+const mainDiv = document.getElementById('mainDiv');
+createHeader();
+fetch('https://jsonplaceholder.typicode.com/posts?_embed=comments')
   .then((res) => res.json())
-  .then((users) => {
-    console.log(users);
-    users.map((user) => {
-      console.log(user.name);
-      console.log(user.id);
-      const userPostElement = document.createElement("div");
-      const userName = document.createElement("div");
-      userPostElement.classList.add("userPostElement");
-      user.posts.map((posts) => {
-        console.log(posts.title);
-        console.log(posts.body);
-        const userPostInfoContainer = document.createElement("div");
-        userPostInfoContainer.classList.add("userPostInfoContainer");
-        const commentContainer = document.createElement("div");
-        const userPostBody = document.createElement("p");
-        const userPostTitle = document.createElement("h4");
-        userPostTitle.textContent = "Title:  " + posts.title;
-        userPostBody.innerHTML = `<strong>Post:</strong>  ${posts.body}`;
+  .then((posts) => {
+    posts.map((post) => {
+      const userPostElement = document.createElement('div');
+      const userName = document.createElement('div');
+      const userPostInfoContainer = document.createElement('div');
+      userPostInfoContainer.classList.add('userPostInfoContainer');
+      const userPostBody = document.createElement('p');
+      const userPostTitle = document.createElement('h4');
+      userPostTitle.textContent = `Title:  ${firstLetterUpercase(post.title)}`;
+      userPostBody.innerHTML = `<strong>Post:</strong>  ${firstLetterUpercase(
+        post.body,
+      )}`;
+      userPostElement.classList.add('userPostElement');
+      post.comments.map((comments) => {
+        const commentContainer = document.createElement('ul');
+        const commentItem = document.createElement('li');
+        commentItem.textContent = firstLetterUpercase(comments.body);
+        commentItem.classList.add('commentContainer');
         userPostInfoContainer.prepend(
           userPostTitle,
           userPostBody,
-          commentContainer
+          commentContainer,
         );
+        commentContainer.append(commentItem);
         userPostElement.prepend(userName);
         userPostElement.append(userPostInfoContainer);
         mainDiv.append(userPostElement);
-        userName.innerHTML = `<a style=font-size:20px class="hover-underline-animation" href="./oneUser.html?user_id=${user.id}">${user.name}</a>`;
         userPostElement.prepend(userName);
         mainDiv.append(userPostElement);
       });

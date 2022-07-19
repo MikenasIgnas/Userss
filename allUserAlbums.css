@@ -3,23 +3,6 @@
   padding-right: 25px;
 }
 
-.homePageContainer {
-  width: 100%;
-  background-color: rgb(104, 105, 184);
-}
-
-.homePage {
-  align-items: center;
-  margin: auto;
-  max-width: 1550px;
-  padding: 20px;
-
-  background-color: rgb(104, 105, 184);
-}
-.homePageInfo {
-  width: 100%;
-  text-align: center;
-}
 a {
   color: rgb(0, 0, 0);
 }
@@ -30,8 +13,36 @@ a {
   text-align: left;
   margin: auto;
 }
-#mainDiv {
-  gap: 10px;
+
+#user-info {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  justify-items: center;
+  gap: 10px;
 }
+.userInfoContainer {
+  height: 250px;
+  background-color: rgb(186, 187, 233);
+}
+.homePageContainer {
+  width: 100%;
+  background-color: rgb(104, 105, 184);
+}
+
+.homePage {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  max-width: 1550px;
+  height: 1000px;
+  width: 100%;
+}
+.homePageInfo {
+  width: 100%;
+}
+
+.listItems {
+  padding-right: 20px;
+}
+
+
