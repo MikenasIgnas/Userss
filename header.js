@@ -13,6 +13,7 @@ const createHeader = () => {
   const inputElement = document.createElement('input');
   const selectElement = document.createElement('select');
   const createPostButton = document.createElement('button');
+  const createUserButton = document.createElement('button');
 
   const createHeaderElement = (elementType, textContent, href) => {
     const element = document.createElement(elementType);
@@ -30,14 +31,19 @@ const createHeader = () => {
   const postsOption = createHeaderElement('option', 'Posts', '');
   const albumOption = createHeaderElement('option', 'Album', '');
 
-  createPostButton.style.width = '70px';
-  createPostButton.style.height = '20px';
-  createPostButton.value = 'create';
-  createPostButton.textContent = 'Create Post';
-  createPostButton.style.fontSize = '10px';
-  createPostButton.addEventListener('click', () => {
-    window.location.assign('./createPost.html');
-  });
+  const postButtom = (button, buttonText, location) => {
+    button.style.width = '70px';
+    button.style.height = '20px';
+    button.value = 'create';
+    button.textContent = buttonText;
+    button.style.fontSize = '10px';
+    button.addEventListener('click', () => {
+      window.location.assign(location);
+    });
+  };
+
+  postButtom(createPostButton, 'Create Post', './createPost.html');
+  postButtom(createUserButton, 'Create User', './createUser.html');
 
   inputElement.placeholder = 'Search For User';
   inputElement.name = 'search';
@@ -111,6 +117,7 @@ const createHeader = () => {
     albumsElement,
     searchForm,
     createPostButton,
+    createUserButton,
   );
 };
 export { createHeader };

@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { createHeader } from './header.js';
 
 createHeader();
@@ -25,8 +26,8 @@ const createForm = () => {
 
   const containerElement = document.createElement('div');
   const selectContainer = document.createElement('div');
-  const selectElement = document.createElement('select');
   const selectTitle = document.createElement('p');
+  const selectElement = document.createElement('select');
   selectTitle.textContent = 'Select User';
   selectContainer.style.display = 'flex';
   selectElement.style.width = '300px';
@@ -41,52 +42,46 @@ const createForm = () => {
     const inputContainer = document.createElement('div');
     const postTitleIputContainer = document.createElement('div');
     const postInputName = document.createElement('div');
-    postInputName.textContent = 'Post Title: ';
-    postTitleIputContainer.style.display = 'flex';
-    postTitleIputContainer.style.alignItems = 'center';
-    postTitleIputContainer.style.justifyContent = 'space-around';
     const postBodyInputContainer = document.createElement('div');
     const postTextAreaName = document.createElement('div');
-    postTextAreaName.textContent = 'Post Body: ';
-    postBodyInputContainer.style.display = 'flex';
-    postBodyInputContainer.style.alignItems = 'center';
-    postBodyInputContainer.style.justifyContent = 'space-around';
-    inputContainer.classList.add('inputContainer');
-
     const inputElement = document.createElement('input');
     const textAreaElement = document.createElement('textarea');
 
-    textAreaElement.style.width = '300px';
-    textAreaElement.style.maxWidth = '300px';
-    textAreaElement.style.minWidth = '300px';
-    textAreaElement.style.maxHeight = '90px';
-    textAreaElement.placeholder = 'Enter Post Body';
-    textAreaElement.style.border = 'none';
-    textAreaElement.style.outline = 'none';
-    textAreaElement.style.borderBottom = '1px solid black';
+    const inputContainerStyle = (inputName, inputTextContent, container) => {
+      inputName.textContent = inputTextContent;
+      container.style.display = 'flex';
+      container.style.alignItems = 'center';
+      container.style.justifyContent = 'space-around';
+    };
+    const inputElementStyles = (elements, placeholder) => {
+      elements.style.width = '300px';
+      elements.style.maxWidth = '300px';
+      elements.style.minWidth = '300px';
+      elements.style.maxHeight = '90px';
+      elements.placeholder = placeholder;
+      elements.style.border = 'none';
+      elements.style.outline = 'none';
+      elements.style.borderBottom = '1px solid black';
+    };
+    inputElementStyles(textAreaElement, 'Enter Post Body');
+    inputElementStyles(inputElement, 'Enter Post Title');
+    inputContainerStyle(postInputName, 'Post Title: ', postTitleIputContainer);
+    inputContainerStyle(postTextAreaName, 'Post Body: ', postBodyInputContainer);
 
-    inputElement.style.border = 'none';
-    inputElement.style.outline = 'none';
-    inputElement.style.borderBottom = '1px solid black';
-    inputElement.style.width = '100%';
-    inputElement.placeholder = 'Enter Post Title';
-    inputElement.style.maxWidth = '300px';
-    inputElement.style.height = '20px';
     containerElement.style.width = '100%';
-
     containerElement.style.alignItems = 'center';
+
     postTitleIputContainer.append(postInputName, inputElement);
     postBodyInputContainer.append(postTextAreaName, textAreaElement);
     inputContainer.append(postTitleIputContainer, postBodyInputContainer);
     containerElement.append(inputContainer);
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      fetch('https://jsonplaceholder.typicode.com/posts', {
+      fetch('https://jsonplaceholder.typicode.com/users?_embed=posts', {
         method: 'POST',
         body: JSON.stringify({
           title: `${inputElement.value}`,
           body: `${textAreaElement.value}`,
-          userId: 1,
         }),
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
@@ -100,7 +95,13 @@ const createForm = () => {
             const postAuthor = document.createElement('div');
             const postTitle = document.createElement('div');
             const postBody = document.createElement('div');
-            postAuthor.textContent = `Author: ${searchVariation}`;
+            fetch('https://jsonplaceholder.typicode.com/users').then((res) => res.json()).then((data) => {
+              data.map((user) => {
+                if (searchVariation === user.name) {
+                  postAuthor.innerHTML = `<a href="./oneUser.html?user_id=${user.id}">Author: ${user.name} userId ${user.id}</a> `;
+                }
+              });
+            });
             postTitle.textContent = `Title: ${json.title}`;
             postBody.textContent = `Body: ${json.body}`;
 
@@ -119,10 +120,8 @@ const createForm = () => {
 
             postContainer.append(postAuthor, postTitle, postBody);
             formContainer.append(postContainer);
-            inputElement.value = '';
-            textAreaElement.value = '';
-          } else {
-            alert('Iput fields are not filled');
+
+            e.target.reset();
           }
         });
     });
@@ -132,6 +131,7 @@ const createForm = () => {
     users.map((user) => {
       const optionElement = document.createElement('option');
       optionElement.textContent = user.name;
+      optionElement.id = user.id;
       selectElement.append(optionElement);
     });
   });

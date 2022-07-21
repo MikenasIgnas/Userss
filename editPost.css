@@ -1,0 +1,18 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin: auto;
+    margin-bottom: 40px;
+    background-color: lightblue;
+    padding: 10px;
+}
+#mainDiv{
+    height: 750px;
+}
+.userPostInfoContainer{
+    background-color: lightblue;
+}
+.input{
+    margin-bottom: 20px;
+}
