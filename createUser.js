@@ -11,7 +11,8 @@ formClass.style.margin = 'auto';
 formClass.style.width = '20%';
 formClass.style.display = 'flex';
 formClass.style.flexDirection = 'column';
-
+formClass.style.backgroundColor = 'lightblue';
+formClass.style.padding = '20px';
 createHeader();
 
 const userInFoContainer = document.createElement('ul');
@@ -55,28 +56,28 @@ button.addEventListener('click', (e) => {
     });
 });
 
-function makeRequest(location) {
-  return new Promise((resolve, reject) => {
-    console.log(`Making request to ${location}`);
-    if (location === 'Google') {
-      resolve('Google say Hi');
-    } else {
-      reject('We can only talk to Google');
-    }
-  });
-}
+// function makeRequest(location) {
+//   return new Promise((resolve, reject) => {
+//     console.log(`Making request to ${location}`);
+//     if (location === 'Google') {
+//       resolve('Google say Hi');
+//     } else {
+//       reject('We can only talk to Google');
+//     }
+//   });
+// }
 
-function processRequest(response) {
-  return new Promise((resolve, reject) => {
-    console.log('Procesing response');
-    resolve(`Extra information + ${response}`);
-  });
-}
+// function processRequest(response) {
+//   return new Promise((resolve, reject) => {
+//     console.log('Procesing response');
+//     resolve(`Extra information + ${response}`);
+//   });
+// }
 
-async function doWork() {
-  const response = await makeRequest('Google');
-  console.log('response received');
-  const processResponse = await processRequest(response);
-  console.log(processResponse);
-}
-doWork();
+// async function doWork() {
+//   const response = await makeRequest('Google');
+//   console.log('response received');
+//   const processResponse = await processRequest(response);
+//   console.log(processResponse);
+// }
+// doWork();
