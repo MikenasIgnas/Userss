@@ -99,6 +99,10 @@ function createOneUser() {
 createOneUser();
 const showPosts = document.getElementById('showPosts');
 const showAlbums = document.getElementById('showAlbums');
+const editUser = document.getElementById('editUser');
+editUser.addEventListener('click', ()=>{
+  window.location.assign(`./editUser.html?user_id=${userId}`);
+})
 const toggleShowButtons = (showButton, showContentValue, contentWrapper) => {
   showButton.addEventListener('click', (e) => {
     if (e.target.value === showContentValue) {

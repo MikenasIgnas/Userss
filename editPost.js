@@ -36,14 +36,20 @@ fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`).then((res) => res.
     data.body,
   )}`;
   fetch('https://jsonplaceholder.typicode.com/users').then((res) => res.json()).then((users) => {
-    users.map((user) => {
-      if (Number(postId) === user.id) {
-        userName.textContent = user.name;
-      }
-      const selectOption = document.createElement('option');
-      selectOption.textContent = user.name;
-      selectElement.append(selectOption);
-    });
+    const mapFunctiom = () => {
+      users.map((user, i) => {
+        const selectOption = document.createElement('option');
+        if (Number(postId) === user.id) {
+          userName.textContent = user.name;
+        }
+        selectOption.textContent = user.name;
+        selectOption.id = i + 1;
+        selectOption.name = 'option';
+        console.log(selectOption.id);
+        selectElement.append(selectOption);
+      });
+    };
+    mapFunctiom();
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       fetch('https://jsonplaceholder.typicode.com/posts/1', {
@@ -52,7 +58,7 @@ fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`).then((res) => res.
           id: 2,
           title: postTitleInput.value,
           body: postBodyInput.value,
-          userId: 1,
+          userId: mapFunctiom(),
         }),
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
@@ -60,7 +66,9 @@ fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`).then((res) => res.
       })
         .then((response) => response.json())
         .then((json) => {
+          console.log(json);
           const searchVariation = e.target.elements.variations.value;
+          console.log(e.target.variations);
           userName.textContent = searchVariation;
           userPostTitle.textContent = `Title: ${json.title}`;
           userPostBody.innerHTML = `<strong>Post:</strong> ${json.body}`;

@@ -1,21 +1,26 @@
 import { createHeader } from './header.js';
 
-const formClass = document.querySelector('.formClass');
-const form = document.getElementById('form');
-const button = document.getElementById('button');
-
-button.style.margin = 'auto';
-button.style.width = '70px';
-button.style.height = '20px';
-formClass.style.margin = 'auto';
-formClass.style.width = '20%';
-formClass.style.display = 'flex';
-formClass.style.flexDirection = 'column';
-formClass.style.backgroundColor = 'lightblue';
-formClass.style.padding = '20px';
 createHeader();
 
 const userInFoContainer = document.createElement('ul');
+ 
+
+const form = document.getElementById('form');
+const button = document.getElementById('button');
+export const createUserForm = () => {
+  const formClass = document.querySelector('.formClass');
+  button.style.margin = 'auto';
+  button.style.width = '70px';
+  button.style.height = '20px';
+  formClass.style.margin = 'auto';
+  formClass.style.width = '20%';
+  formClass.style.display = 'flex';
+  formClass.style.flexDirection = 'column';
+  formClass.style.backgroundColor = 'lightblue';
+  formClass.style.padding = '20px';
+};
+createUserForm();
+
 button.addEventListener('click', (e) => {
   e.preventDefault();
   fetch('https://jsonplaceholder.typicode.com/users', {
@@ -38,19 +43,19 @@ button.addEventListener('click', (e) => {
     },
   })
     .then((response) => response.json())
-    .then((json) => {
+    .then((jsonData) => {
       userInFoContainer.innerHTML = `
-    <li>Name:${json.name}</li>
-    <li>User Name: ${json.username}</li>
-    <li>Phone: ${json.phone}</li>
-    <li>Email: ${json.email}</li>
-    <li>Adress:</li>
-    <ul>
-    <li>Street: ${json.address.street}</li>
-    <li>Suite: ${json.address.suite}</li>
-    <li>City: ${json.address.city}</li>
-    <li>Zipcode: ${json.address.zipcode}</li>
-    </ul>`;
+        <li>Name:${jsonData.name}</li>
+        <li>User Name: ${jsonData.username}</li>
+        <li>Phone: ${jsonData.phone}</li>
+        <li>Email: ${jsonData.email}</li>
+        <li>Adress:</li>
+        <ul>
+        <li>Street: ${jsonData.address.street}</li>
+        <li>Suite: ${jsonData.address.suite}</li>
+        <li>City: ${jsonData.address.city}</li>
+        <li>Zipcode: ${jsonData.address.zipcode}</li>
+        </ul>`;
       form.append(userInFoContainer);
       form.reset();
     });
