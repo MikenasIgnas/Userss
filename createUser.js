@@ -60,29 +60,3 @@ button.addEventListener('click', (e) => {
       form.reset();
     });
 });
-
-// function makeRequest(location) {
-//   return new Promise((resolve, reject) => {
-//     console.log(`Making request to ${location}`);
-//     if (location === 'Google') {
-//       resolve('Google say Hi');
-//     } else {
-//       reject('We can only talk to Google');
-//     }
-//   });
-// }
-
-// function processRequest(response) {
-//   return new Promise((resolve, reject) => {
-//     console.log('Procesing response');
-//     resolve(`Extra information + ${response}`);
-//   });
-// }
-
-// async function doWork() {
-//   const response = await makeRequest('Google');
-//   console.log('response received');
-//   const processResponse = await processRequest(response);
-//   console.log(processResponse);
-// }
-// doWork();

@@ -1,12 +1,13 @@
 /* eslint-disable no-param-reassign */
 import { createHeader } from './header.js';
-import { firstLetterUpercase } from './utility.js';
+import { firstLetterUpercase, paginationfunc } from './utility.js';
 
 const mainDiv = document.getElementById('mainDiv');
 createHeader();
+
 const createPost = () => {
   fetch('https://jsonplaceholder.typicode.com/users').then((res) => res.json()).then((users) => {
-    fetch('https://jsonplaceholder.typicode.com/posts?_embed=comments')
+    fetch(`https://jsonplaceholder.typicode.com/posts?_embed=comments&_start=${paginationfunc()}&_limit=10`)
       .then((res) => res.json())
       .then((posts) => {
         posts.map((post) => {
@@ -16,8 +17,11 @@ const createPost = () => {
           userPostInfoContainer.classList.add('userPostInfoContainer');
           const userPostBody = document.createElement('p');
           const userPostTitle = document.createElement('h4');
-          const createButton = (elements, elemenType, textContent, href) => {
-            elements = document.createElement(elemenType);
+
+          const createButton = ({
+            elemenType, textContent, href,
+          }) => {
+            const elements = document.createElement(elemenType);
             elements.textContent = textContent;
             elements.style.backgroundColor = 'lightblue';
             elements.style.padding = '5px';
@@ -26,18 +30,18 @@ const createPost = () => {
             elements.href = href;
             return elements;
           };
-          const editPostButton = createButton('', 'a', 'Edit Post', `./editPost.html?post_id=${post.id}`);
+          const editPostButton = createButton({ elemenType: 'a', textContent: 'Edit Post', href: `./editPost.html?post_id=${post.id}` });
           userPostTitle.textContent = `Title:  ${firstLetterUpercase(post.title)}`;
           userPostBody.innerHTML = `<strong>Post:</strong>  ${firstLetterUpercase(
             post.body,
           )}`;
-          const createCommentButton = createButton('', 'a', 'Add comment', '');
+          const createCommentButton = createButton({ elemenType: 'a', textContent: 'Add comment' });
 
           createCommentButton.addEventListener('click', (e) => {
             e.preventDefault();
             const newCommentBodyInput = document.createElement('input');
             userPostElement.removeChild(createCommentButton);
-            const saveCommentButton = createButton('', 'a', 'Save comment', '');
+            const saveCommentButton = createButton({ elemenType: 'a', textContent: 'Save comment' });
             userPostInfoContainer.append(saveCommentButton);
             userPostInfoContainer.append(newCommentBodyInput);
             saveCommentButton.addEventListener('click', (e) => {
@@ -63,8 +67,8 @@ const createPost = () => {
                     userPostInfoContainer.removeChild(saveCommentButton);
                     userPostInfoContainer.removeChild(newCommentBodyInput);
 
-                    const editCommentButton = createButton('', 'button', 'Edit Comment', '');
-                    const saveButton = createButton('', 'button', 'Save Changes', '');
+                    const editCommentButton = createButton({ elemenType: 'button', textContent: 'Edit Comment' });
+                    const saveButton = createButton({ elemenType: 'button', textContent: 'Save Changes' });
 
                     const commentContainerEdit = document.createElement('input');
                     editCommentButton.addEventListener('click', () => {
@@ -105,8 +109,8 @@ const createPost = () => {
 
           post.comments.map((comments) => {
             function editButtons() {
-              const editCommentButton = createButton('', 'button', 'Edit Comment', '');
-              const saveButton = createButton('', 'button', 'Save Changes', '');
+              const editCommentButton = createButton({ elemenType: 'button', textContent: 'Edit Comment' });
+              const saveButton = createButton({ elemenType: 'button', textContent: 'Save Changes' });
               const commentContainer = document.createElement('ul');
               const commentItem = document.createElement('li');
               commentItem.textContent = firstLetterUpercase(comments.body);

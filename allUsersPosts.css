@@ -1,3 +1,7 @@
+body{
+  background-color: rgb(104, 105, 184);
+}
+
 .userPostElement {
   background-color: rgb(186, 187, 233);
 }
@@ -92,3 +96,10 @@ a:hover {
 h4 {
   text-decoration: underline;
 }
+ .buttonStyle{
+  background-color:lightblue;
+  border: none;
+  padding: 5px;
+  border-radius: 15px;
+  cursor: pointer;
+ }

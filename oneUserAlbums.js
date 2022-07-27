@@ -10,21 +10,23 @@ const albumBox = document.createElement('div');
 albumBox.classList.add('albumBox');
 
 createHeader();
-fetch(`https://jsonplaceholder.typicode.com/albums?user_id=${userId}`)
-  .then((res) => res.json())
-  .then((userAlbums) => {
-    userAlbums.map((album) => {
-      if (Number(userId) === album.userId) {
-        const albumContainer = document.createElement('div');
-        albumContainer.classList.add('albumContainer');
-        const albumListItemms = document.createElement('div');
+const oneUserAlbums = async () => {
+  const res = await fetch(`https://jsonplaceholder.typicode.com/albums?user_id=${userId}`);
+  const userAlbums = await res.json();
+  userAlbums.map((album) => {
+    if (Number(userId) === album.userId) {
+      const albumContainer = document.createElement('div');
+      albumContainer.classList.add('albumContainer');
+      const albumListItemms = document.createElement('div');
 
-        albumListItemms.innerHTML = `<a class="hover-underline-animation" href="./photos.html?user_id=${userId}&album_id=${
-          album.id
-        }">${firstLetterUpercase(album.title)}</a>`;
-        homePageContainer.append(albumBox);
-        albumBox.append(albumContainer);
-        albumContainer.append(albumListItemms);
-      }
-    });
+      albumListItemms.innerHTML = `<a class="hover-underline-animation" href="./photos.html?user_id=${userId}&album_id=${
+        album.id
+      }">${firstLetterUpercase(album.title)}</a>`;
+      homePageContainer.append(albumBox);
+      albumBox.append(albumContainer);
+      albumContainer.append(albumListItemms);
+    }
   });
+};
+
+oneUserAlbums();
