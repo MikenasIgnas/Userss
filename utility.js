@@ -20,28 +20,23 @@ export const paginationfunc = () => {
   paginationContainer.style.alignItems = 'center';
   paginationContainer.style.fontSize = '20px';
   // eslint-disable-next-line no-plusplus
-  for (let i = 0; i < 10; i++) {
-    const pageElement = document.createElement('a');
-    pageElement.id = i + 1;
-    paginationContainer.append(pageElement);
-    pageElement.href = `./allUsersPosts.html?_start=${i * 10}&_limit=10`;
-    pageElement.textContent = i + 1;
-    pageElement.classList.add('hover-underline-animation');
-    // if (Number(postPage) + 10 / 10 === Number(pageElement.textContent)) {
-    //   pageElement.style.color = 'red';
-    // }
-  }
-
-//   const getElement = (elementId) => {
-//     const firstEl = document.getElementById(elementId);
-//     if (Number(postPage + 10 / 10) === Number(elementId)) {
-//       firstEl.style.color = 'red';
-//     }
-//   };
-//   for (let i = 0; i < 10; i++) {
-//     getElement(i);
-//   }
-
+  const pageFunc = () => {
+    const pageNum = [];
+    for (let i = 0; i < 10; i++) {
+      const pageElement = document.createElement('a');
+      pageElement.id = i + 1;
+      paginationContainer.append(pageElement);
+      pageElement.href = `./allUsersPosts.html?_start=${i * 10}&_limit=10`;
+      pageElement.textContent = i + 1;
+      pageNum.push(Number(pageElement.textContent));
+      pageElement.classList.add('hover-underline-animation');
+      const pageNumbersEl = document.getElementById(pageNum[i]);
+      if ((Number(postPage) + 10) / 10 === Number(pageNumbersEl.textContent)) {
+        pageNumbersEl.style.color = 'red';
+      }
+    }
+  };
+  pageFunc();
   const next = document.createElement('a');
   next.textContent = 'Next';
   const lastPage = document.createElement('a');
@@ -58,8 +53,6 @@ export const paginationfunc = () => {
   if (postPage > 10) {
     prev.href = `./allUsersPosts.html?_start=${Number(postPage) - 10}&_limit=10`;
   }
-
-  console.log(paginationContainer);
   paginationContainer.append(next, lastPage);
   return postPage;
 };
