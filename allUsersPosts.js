@@ -1,15 +1,19 @@
 /* eslint-disable no-param-reassign */
 import { createHeader } from './header.js';
-import { firstLetterUpercase, paginationfunc } from './utility.js';
+import {
+  firstLetterUpercase, paginationfunc, startLoadingAnimation, endLoadingAnimation,
+} from './utility.js';
 
 const mainDiv = document.getElementById('mainDiv');
 createHeader();
 
 const createPost = () => {
+  startLoadingAnimation('mainDiv');
   fetch('https://jsonplaceholder.typicode.com/users').then((res) => res.json()).then((users) => {
     fetch(`https://jsonplaceholder.typicode.com/posts?_embed=comments&_start=${paginationfunc()}&_limit=10`)
       .then((res) => res.json())
       .then((posts) => {
+        endLoadingAnimation('mainDiv');
         posts.map((post) => {
           const userPostElement = document.createElement('div');
           const userName = document.createElement('h3');
@@ -44,6 +48,7 @@ const createPost = () => {
             const saveCommentButton = createButton({ elemenType: 'a', textContent: 'Save comment' });
             userPostInfoContainer.append(saveCommentButton);
             userPostInfoContainer.append(newCommentBodyInput);
+            // eslint-disable-next-line no-shadow
             saveCommentButton.addEventListener('click', (e) => {
               e.preventDefault();
               fetch('https://jsonplaceholder.typicode.com/comments', {

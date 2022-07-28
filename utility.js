@@ -22,6 +22,7 @@ export const paginationfunc = () => {
   // eslint-disable-next-line no-plusplus
   const pageFunc = () => {
     const pageNum = [];
+    // eslint-disable-next-line no-plusplus
     for (let i = 0; i < 10; i++) {
       const pageElement = document.createElement('a');
       pageElement.id = i + 1;
@@ -55,4 +56,31 @@ export const paginationfunc = () => {
   }
   paginationContainer.append(next, lastPage);
   return postPage;
+};
+
+export const startLoadingAnimation = (elementId) => {
+  const loader = '<div id="loaderAnimation" class="loader"></div>';
+  document.getElementById(elementId).innerHTML = loader;
+  const loaderAnimation = document.getElementById('loaderAnimation');
+  loaderAnimation.style.border = ' 16px solid #f3f3f3';
+  loaderAnimation.style.borderTop = '16px solid #3498db';
+  loaderAnimation.style.borderRadius = '50%';
+  loaderAnimation.style.width = '120px';
+  loaderAnimation.style.height = '120px';
+  loaderAnimation.style.animation = 'spin 2s linear infinite';
+  loaderAnimation.style.margin = 'auto';
+  loaderAnimation.style.marginTop = '500px';
+  loaderAnimation.style.marginBottom = '500px';
+
+  const cssAnimation = document.createElement('style');
+  const rules = document.createTextNode('@-webkit-keyframes spin {'
+  + 'from 0% { transform: rotate(0deg); }'
+  + '100% { transform: rotate(360deg); }'
+  + '}');
+  cssAnimation.appendChild(rules);
+  document.getElementsByTagName('body')[0].appendChild(cssAnimation);
+};
+
+export const endLoadingAnimation = (elementId) => {
+  document.getElementById(elementId).innerHTML = '';
 };
